@@ -17,11 +17,4 @@ RSpec.describe Enigma do
     expect(enigma.alphabet.include?(" ")).to be(TRUE)
     expect(enigma.alphabet.count).to eq(27)
   end
-
-
-  it 'generates a random 5-digit key' do
-    enigma = Enigma.new
-
-    expect(enigma.generate_key).to be_a(Integer)
-  end
 end
