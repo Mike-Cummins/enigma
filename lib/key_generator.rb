@@ -21,4 +21,15 @@ class KeyGenerator
     sq_date = date**2
     @offset = sq_date.digits.pop(4)
   end
+
+  def generate_shift
+    shift = []
+    generate_key
+    generate_offset
+    shift << a_shift = key[0] + key[1] + offset[0]
+    shift << b_shift = key[1] + key[2] + offset[1]
+    shift << c_shift = key[2] + key[3] + offset[2]
+    shift << d_shift = key[3] + key[4] + offset[3]
+    shift
+  end
 end

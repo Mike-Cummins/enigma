@@ -33,4 +33,13 @@ RSpec.describe KeyGenerator do
     expect(key_generator.generate_offset).to be_a(Array)
     expect(key_generator.generate_offset.count).to eq(4)
   end
+
+  it 'calculates shift based on key and offset' do
+    key_generator = KeyGenerator.new
+    key_generator.generate_shift
+
+    expect(key_generator.generate_shift).to be_a(Array)
+    expect(key_generator.generate_shift[0]).to be_a(Integer)
+    expect(key_generator.generate_shift.count).to eq(4)
+  end
 end
