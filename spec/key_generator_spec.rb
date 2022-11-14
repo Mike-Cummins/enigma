@@ -38,8 +38,8 @@ RSpec.describe KeyGenerator do
     key_generator = KeyGenerator.new
     key_generator.generate_shift
 
-    expect(key_generator.generate_shift).to be_a(Array)
-    expect(key_generator.generate_shift[0]).to be_a(Integer)
-    expect(key_generator.generate_shift.count).to eq(4)
+    expect(key_generator.shift).to be_a(Array)
+    expect(key_generator.shift[0]).to be_a(Integer)
+    expect(key_generator.shift.count).to eq(4)
   end
 end

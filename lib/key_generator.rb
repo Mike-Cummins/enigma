@@ -2,11 +2,13 @@ require 'date'
 
 class KeyGenerator
   attr_reader :key,
-              :offset
+              :offset,
+              :shift
 
   def initialize
     @key = []
     @offset = []
+    @shift = []
   end
 
   def generate_key
@@ -23,13 +25,11 @@ class KeyGenerator
   end
 
   def generate_shift
-    shift = []
     generate_key
     generate_offset
-    shift << a_shift = key[0] + key[1] + offset[0]
-    shift << b_shift = key[1] + key[2] + offset[1]
-    shift << c_shift = key[2] + key[3] + offset[2]
-    shift << d_shift = key[3] + key[4] + offset[3]
-    shift
+    @shift << a_shift = key[0] + key[1] + offset[0]
+    @shift << b_shift = key[1] + key[2] + offset[1]
+    @shift << c_shift = key[2] + key[3] + offset[2]
+    @shift << d_shift = key[3] + key[4] + offset[3]
   end
 end
