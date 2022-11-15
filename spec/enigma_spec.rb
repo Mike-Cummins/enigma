@@ -1,3 +1,4 @@
+require 'date'
 require './lib/enigma'
 require'./lib/key_generator'
 
@@ -63,5 +64,11 @@ RSpec.describe Enigma do
           key: "02715",
           date: "151122"
       })
+    end
+
+    it 'encrypts a message with a random key and todays date' do
+      enigma = Enigma.new
+
+      expect(enigma.encrypt("Hello world")).to be_a(Hash)
     end
 end
