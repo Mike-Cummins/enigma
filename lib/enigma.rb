@@ -9,7 +9,7 @@ class Enigma
     @alphabet = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(message, key = generate_key, offset = generate_date)
+  def encrypt(message, key = @keymaster.generate_key, offset = @keymaster.generate_date)
     new_message = split_message(message)
     shift = @keymaster.generate_shift(key, offset)
     encrypted = new_message.map.with_index do |letter, index|
