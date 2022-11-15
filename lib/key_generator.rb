@@ -6,48 +6,31 @@ class KeyGenerator
               :shift
 
   def initialize
-    @key = []
+    @key = key
     @offset = []
     @shift = []
+
   end
 
   def generate_key
-    5.times do
-      num = rand(1...9)
-      @key << num
-    end
+   @key = rand(10000...99999).to_s  
   end
 
-  def generate_offset(date = Date.today)
-    date = date.strftime('%d%m%y').to_i
-    sq_date = date**2
-    @offset = sq_date.digits.pop(4)
+  def generate_date
+    Date.today.strftime('%d%m%y').to_s.delete("/")
   end
 
-  def generate_shift
-    generate_key
-    generate_offset
-    @shift << a_shift = key[0] + key[1] + offset[0]
-    @shift << b_shift = key[1] + key[2] + offset[1]
-    @shift << c_shift = key[2] + key[3] + offset[2]
-    @shift << d_shift = key[3] + key[4] + offset[3]
+  def generate_offset(date)
+    sq_date = date.to_i**2
+    @offset = sq_date.digits.reverse.pop(4)
   end
 
-  def shift_calculate(key, date)
-    new_key = []
-    new_shift = []
-    split_key = key.split(//)
-    split_key.each do |num|
-      new_key << num.to_i
-    end
-    date = date.to_i
-    sq_date = date**2
-    new_date = sq_date.digits.reverse.pop(4)
-
-    new_shift << a_shift = new_key[0] + new_key[1] + new_date[0]
-    new_shift << b_shift = new_key[1] + new_key[2] + new_date[1]
-    new_shift << c_shift = new_key[2] + new_key[3] + new_date[2]
-    new_shift << d_shift = new_key[3] + new_key[4] + new_date[3]
-    new_shift
+  def generate_shift(key_arg = @key, date_arg = @offset)
+    new_key = key_arg.chars
+    new_offset = generate_offset(date_arg)
+    @shift << a_shift = (new_key[0..1].join.to_i + new_offset[0]) % 27
+    @shift << b_shift = (new_key[1..2].join.to_i + new_offset[1]) % 27
+    @shift << c_shift = (new_key[2..3].join.to_i + new_offset[2]) % 27
+    @shift << d_shift = (new_key[3..4].join.to_i + new_offset[3]) % 27
   end
 end
