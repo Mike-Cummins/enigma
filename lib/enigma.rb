@@ -1,5 +1,5 @@
 require 'date'
-require '/key_generator'
+require_relative './key_generator'
 
 class Enigma
   attr_reader :alphabet
