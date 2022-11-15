@@ -1,4 +1,5 @@
 require './lib/enigma'
+require'./lib/key_generator'
 
 RSpec.describe Enigma do
   it 'exists' do
@@ -16,5 +17,12 @@ RSpec.describe Enigma do
     expect(enigma.alphabet.include?("m")).to be(TRUE)
     expect(enigma.alphabet.include?(" ")).to be(TRUE)
     expect(enigma.alphabet.count).to eq(27)
+  end
+
+  it 'encrypts a message given a message, key, and offset' do
+    enigma = Enigma.new
+    key_generator = KeyGenerator.new
+
+    expect(enigma.encrypt("hello world", "02715", "040895")).to be_a(Hash)
   end
 end
