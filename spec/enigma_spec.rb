@@ -19,10 +19,19 @@ RSpec.describe Enigma do
     expect(enigma.alphabet.count).to eq(27)
   end
 
+  it 'can split a given message and downcase into individual letters' do
+    enigma = Enigma.new
+
+    expect(enigma.split_message("Hello")).to eq(["h", "e", "l", "l", "o"])
+  end
+
   it 'encrypts a message given a message, key, and offset' do
     enigma = Enigma.new
-    key_generator = KeyGenerator.new
 
-    expect(enigma.encrypt("hello world", "02715", "040895")).to be_a(Hash)
+    expect(enigma.encrypt("hello world", "02715", "040895")).to eq({
+          encryption: "keder ohulw",
+          key: "02715",
+          date: "040895"
+         })
   end
 end
