@@ -10,7 +10,6 @@ class KeyGenerator
     @key = key
     @offset = []
     @shift = []
-
   end
 
   def generate_key
