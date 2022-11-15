@@ -1,9 +1,21 @@
+require 'date'
+require '/key_generator'
+
 class Enigma
-  def generate_key
-    rand(10000...99999)
+  attr_reader :alphabet
+
+  def initialize
+    
+    @alphabet = ('a'..'z').to_a << ' '
+    
   end
-  def alphabet
-    ("a".."z").to_a << " "
+
+  def encrypt(message, key = generate_key, offset = generate_offset)
+    require 'pry'; binding.pry
+    shift_calculate(key, offset)
+    
+    message.chars.each do |message_letter|
+    end
   end
-  
+
 end
