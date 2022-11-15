@@ -19,7 +19,7 @@ class Enigma
     {encryption: encrypted, key: key, date: offset}
   end
 
-  def decrypt(message, key, offset = generate_date)
+  def decrypt(message, key, offset = @keymaster.generate_date)
     new_message = split_message(message)
     shift = @keymaster.generate_shift(key, offset)
     decrypted = new_message.map.with_index do |letter, index|
